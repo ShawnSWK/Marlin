@@ -134,7 +134,7 @@
 //#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
 
 // @section stepper drivers
-
+#define DIAG_JUMPERS_REMOVED
 /**
  * Stepper Drivers
  *
@@ -3568,7 +3568,7 @@
 #endif
 
 // Support for Adafruit NeoPixel LED driver
-define NEOPIXEL_LED
+#define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
   #define NEOPIXEL_TYPE          NEO_GRB // NEO_GRBW, NEO_RGBW, NEO_GRB, NEO_RBG, etc.
                                           // See https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.h
@@ -3638,3 +3638,4 @@ define NEOPIXEL_LED
 
 // Disable servo with M282 to reduce power consumption, noise, and heat when not in use
 //#define SERVO_DETACH_GCODE
+#define DIAG_JUMPERS_REMOVED
