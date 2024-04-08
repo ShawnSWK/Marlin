@@ -1597,7 +1597,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -41, 20, -1.372 }
+#define NOZZLE_TO_PROBE_OFFSET { -41, -20, -1.372 }
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
