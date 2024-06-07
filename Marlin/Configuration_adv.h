@@ -958,7 +958,7 @@
 
   // Safety: The probe needs time to recognize the command.
   //         Minimum command delay (ms). Enable and increase if needed.
-  //#define BLTOUCH_DELAY 500
+  //#define BLTOUCH_DELAY 300
 
   /**
    * Settings for BLTOUCH Classic 1.2, 1.3 or BLTouch Smart 1.0, 2.0, 2.2, 3.0, 3.1, and most clones:
@@ -966,7 +966,7 @@
 
   // Feature: Switch into SW mode after a deploy. It makes the output pulse longer. Can be useful
   //          in special cases, like noisy or filtered input configurations.
-  #define BLTOUCH_FORCE_SW_MODE
+  //#define BLTOUCH_FORCE_SW_MODE
 
   /**
    * Settings for BLTouch Smart 3.0 and 3.1
@@ -1005,7 +1005,7 @@
    *
    * Set the default state here, change with 'M401 S' or UI, use M500 to save, M502 to reset.
    */
-  //#define BLTOUCH_HS_MODE true
+  #define BLTOUCH_HS_MODE true
 
   #ifdef BLTOUCH_HS_MODE
     // The probe Z offset (M851 Z) is the height at which the probe triggers.
@@ -1073,7 +1073,7 @@
 
   // On a 300mm bed a 5% grade would give a misalignment of ~1.5cm
   #define G34_MAX_GRADE              5    // (%) Maximum incline that G34 will handle
-  #define Z_STEPPER_ALIGN_ITERATIONS 5    // Number of iterations to apply during alignment
+  #define Z_STEPPER_ALIGN_ITERATIONS 3    // Number of iterations to apply during alignment
   #define Z_STEPPER_ALIGN_ACC        0.02 // Stop iterating early if the accuracy is better than this
   #define RESTORE_LEVELING_AFTER_G34      // Restore leveling after G34 is done?
   // After G34, re-home Z (G28 Z) or just calculate it from the last probe heights?
@@ -1196,8 +1196,8 @@
  *
  * Tune with M593 D<factor> F<frequency>
  */
-//#define INPUT_SHAPING_X
-//#define INPUT_SHAPING_Y
+#define INPUT_SHAPING_X
+#define INPUT_SHAPING_Y
 //#define INPUT_SHAPING_Z
 #if ANY(INPUT_SHAPING_X, INPUT_SHAPING_Y, INPUT_SHAPING_Z)
   #if ENABLED(INPUT_SHAPING_X)
@@ -1214,7 +1214,7 @@
   #endif
   //#define SHAPING_MIN_FREQ  20.0      // (Hz) By default the minimum of the shaping frequencies. Override to affect SRAM usage.
   //#define SHAPING_MAX_STEPRATE 10000  // By default the maximum total step rate of the shaped axes. Override to affect SRAM usage.
-  //#define SHAPING_MENU                // Add a menu to the LCD to set shaping parameters.
+  #define SHAPING_MENU                // Add a menu to the LCD to set shaping parameters.
 #endif
 
 // @section motion
@@ -1498,7 +1498,7 @@
 #endif
 
 #if HAS_BED_PROBE && ANY(HAS_MARLINUI_MENU, HAS_TFT_LVGL_UI)
-  //#define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
+  #define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
   #if ENABLED(PROBE_OFFSET_WIZARD)
     /**
      * Enable to init the Probe Z-Offset when starting the Wizard.
@@ -1590,12 +1590,12 @@
       //#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
     #endif
     #if ANY(HAS_MARLINUI_U8GLIB, TOUCH_UI_FTDI_EVE, HAS_MARLINUI_HD44780)
-      #define SHOW_CUSTOM_BOOTSCREEN      // Show the bitmap in Marlin/_Bootscreen.h on startup.
+      //#define SHOW_CUSTOM_BOOTSCREEN      // Show the bitmap in Marlin/_Bootscreen.h on startup.
     #endif
   #endif
 
   #if HAS_MARLINUI_U8GLIB
-    #define CUSTOM_STATUS_SCREEN_IMAGE    // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
+   //#define CUSTOM_STATUS_SCREEN_IMAGE    // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
   #endif
 
   //#define SOUND_MENU_ITEM   // Add a mute option to the LCD menu
@@ -1627,7 +1627,7 @@
    * LED Control Menu
    * Add LED Control to the LCD menu
    */
-  //#define LED_CONTROL_MENU
+  #define LED_CONTROL_MENU
   #if ENABLED(LED_CONTROL_MENU)
     #define LED_COLOR_PRESETS                 // Enable the Preset Color menu option
     //#define NEO2_COLOR_PRESETS              // Enable a second NeoPixel Preset Color menu option
@@ -1748,7 +1748,7 @@
    * an option on the LCD screen to continue the print from the last-known
    * point in the file.
    */
-  //#define POWER_LOSS_RECOVERY
+  #define POWER_LOSS_RECOVERY
   #if ENABLED(POWER_LOSS_RECOVERY)
     #define PLR_ENABLED_DEFAULT       false // Power-Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)
     //#define PLR_BED_THRESHOLD BED_MAXTEMP // (°C) Skip user confirmation at or above this bed temperature (0 to disable)
@@ -1840,7 +1840,7 @@
 
   //#define SD_REPRINT_LAST_SELECTED_FILE // On print completion open the LCD Menu and select the same file
 
-  #define AUTO_REPORT_SD_STATUS           // Auto-report media status with 'M27 S<seconds>'
+  //#define AUTO_REPORT_SD_STATUS           // Auto-report media status with 'M27 S<seconds>'
 
   /**
    * Support for USB thumb drives using an Arduino USB Host Shield or
@@ -1969,7 +1969,7 @@
 
   // A bigger font is available for edit items. Costs 3120 bytes of flash.
   // Western only. Not available for Cyrillic, Kana, Turkish, Greek, or Chinese.
-  #define USE_BIG_EDIT_FONT
+  //#define USE_BIG_EDIT_FONT
 
   // A smaller font may be used on the Info Screen. Costs 2434 bytes of flash.
   // Western only. Not available for Cyrillic, Kana, Turkish, Greek, or Chinese.
@@ -2277,7 +2277,7 @@
   //#define BABYSTEP_WITHOUT_HOMING
   //#define BABYSTEP_ALWAYS_AVAILABLE       // Allow babystepping at all times (not just during movement)
   //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
-  //#define BABYSTEP_INVERT_Z               // Enable if Z babysteps should go the other way
+  #define BABYSTEP_INVERT_Z               // Enable if Z babysteps should go the other way
   //#define BABYSTEP_MILLIMETER_UNITS       // Specify BABYSTEP_MULTIPLICATOR_(XY|Z) in mm instead of micro-steps
   #define BABYSTEP_MULTIPLICATOR_Z  1       // (steps or mm) Steps or millimeter distance for each Z babystep
   #define BABYSTEP_MULTIPLICATOR_XY 1       // (steps or mm) Steps or millimeter distance for each XY babystep
@@ -2294,7 +2294,7 @@
 
   //#define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
 
-  //#define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
+  #define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
   //#define BABYSTEP_GLOBAL_Z               // Combine M424 Z and Babystepping
 
   #if ANY(BABYSTEP_ZPROBE_OFFSET, BABYSTEP_GLOBAL_Z)
@@ -2327,7 +2327,7 @@
   #if ENABLED(DISTINCT_E_FACTORS)
     #define ADVANCE_K { 0.0 }     // (mm) Compression length per 1mm/s extruder speed, per extruder
   #else
-    #define ADVANCE_K 0.0         // (mm) Compression length applying to all extruders
+    #define ADVANCE_K 0.08         // (mm) Compression length applying to all extruders
   #endif
   //#define ADVANCE_K_EXTRA       // Add a second linear advance constant, configurable with M900 L.
   //#define LA_DEBUG              // Print debug information to serial during operation. Disable for production use.
@@ -2389,10 +2389,10 @@
  * the probe to be unable to reach any points.
  */
 #if PROBE_SELECTED && !IS_KINEMATIC
-  //#define PROBING_MARGIN_LEFT PROBING_MARGIN
-  //#define PROBING_MARGIN_RIGHT PROBING_MARGIN
-  //#define PROBING_MARGIN_FRONT PROBING_MARGIN
-  //#define PROBING_MARGIN_BACK PROBING_MARGIN
+  #define PROBING_MARGIN_LEFT 30
+  #define PROBING_MARGIN_RIGHT 30
+  #define PROBING_MARGIN_FRONT 20
+  #define PROBING_MARGIN_BACK 20
 #endif
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)
@@ -2904,7 +2904,7 @@
                                                   // This short retract is done immediately, before parking the nozzle.
   #define FILAMENT_CHANGE_UNLOAD_FEEDRATE     10  // (mm/s) Unload filament feedrate. This can be pretty fast.
   #define FILAMENT_CHANGE_UNLOAD_ACCEL        25  // (mm/s^2) Lower acceleration may allow a faster feedrate.
-  #define FILAMENT_CHANGE_UNLOAD_LENGTH      400  // (mm) The length of filament for a complete unload.
+  #define FILAMENT_CHANGE_UNLOAD_LENGTH      200  // (mm) The length of filament for a complete unload.
                                                   //   For Bowden, the full length of the tube and nozzle.
                                                   //   For direct drive, the full length of the nozzle.
                                                   //   Set to 0 for manual unloading.
@@ -2913,12 +2913,12 @@
                                                   // 0 to disable start loading and skip to fast load only
   #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE   6  // (mm/s) Load filament feedrate. This can be pretty fast.
   #define FILAMENT_CHANGE_FAST_LOAD_ACCEL     25  // (mm/s^2) Lower acceleration may allow a faster feedrate.
-  #define FILAMENT_CHANGE_FAST_LOAD_LENGTH   350  // (mm) Load length of filament, from extruder gear to nozzle.
+  #define FILAMENT_CHANGE_FAST_LOAD_LENGTH   200  // (mm) Load length of filament, from extruder gear to nozzle.
                                                   //   For Bowden, the full length of the tube and nozzle.
                                                   //   For direct drive, the full length of the nozzle.
   //#define ADVANCED_PAUSE_CONTINUOUS_PURGE       // Purge continuously up to the purge length until interrupted.
   #define ADVANCED_PAUSE_PURGE_FEEDRATE        3  // (mm/s) Extrude feedrate (after loading). Should be slower than load feedrate.
-  #define ADVANCED_PAUSE_PURGE_LENGTH         50  // (mm) Length to extrude after loading.
+  #define ADVANCED_PAUSE_PURGE_LENGTH         60  // (mm) Length to extrude after loading.
                                                   //   Set to 0 for manual extrusion.
                                                   //   Filament can be extruded repeatedly from the Filament Change menu
                                                   //   until extrusion is consistent, and to purge old filament.
@@ -3019,7 +3019,7 @@
   #endif
 
   #if AXIS_IS_TMC_CONFIG(Z)
-    #define Z_CURRENT       580
+    #define Z_CURRENT       1160
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
@@ -3441,7 +3441,7 @@
     //#define V_STALL_SENSITIVITY  8
     //#define W_STALL_SENSITIVITY  8
     //#define SPI_ENDSTOPS              // TMC2130/TMC5160 only
-    #define IMPROVE_HOMING_RELIABILITY
+    //#define IMPROVE_HOMING_RELIABILITY
   #endif
 
   // @section tmc/config
@@ -3906,7 +3906,7 @@
 /**
  * Extra options for the M114 "Current Position" report
  */
-#define M114_DETAIL           // Use 'M114` for details to check planner calculations
+//#define M114_DETAIL           // Use 'M114` for details to check planner calculations
 //#define M114_REALTIME       // Real current position based on forward kinematics
 //#define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed.
 
@@ -3916,7 +3916,7 @@
  */
 //#define AUTO_REPORT_FANS
 
-#define REPORT_FAN_CHANGE     // Report the new fan speed when changed by M106 (and others)
+//#define REPORT_FAN_CHANGE     // Report the new fan speed when changed by M106 (and others)
 
 /**
  * Auto-report temperatures with M155 S<seconds>
@@ -3929,7 +3929,7 @@
 /**
  * Auto-report position with M154 S<seconds>
  */
-#define AUTO_REPORT_POSITION
+//#define AUTO_REPORT_POSITION
 #if ENABLED(AUTO_REPORT_POSITION)
   //#define AUTO_REPORT_REAL_POSITION // Auto-report the real position
 #endif
@@ -4153,10 +4153,10 @@
   #define HOST_PAUSE_M76                  // Tell the host to pause in response to M76
   #define HOST_PROMPT_SUPPORT             // Initiate host prompts to get user feedback
   #if ENABLED(HOST_PROMPT_SUPPORT)
-    //#define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
+    #define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
   #endif
-  //#define HOST_START_MENU_ITEM          // Add a menu item that tells the host to start
-  //#define HOST_SHUTDOWN_MENU_ITEM       // Add a menu item that tells the host to shut down
+  #define HOST_START_MENU_ITEM          // Add a menu item that tells the host to start
+  #define HOST_SHUTDOWN_MENU_ITEM       // Add a menu item that tells the host to shut down
 #endif
 
 // @section extras
